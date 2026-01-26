@@ -22,8 +22,19 @@
             font-family: 'Inter', sans-serif;
         }
         
+        /* Consistent Color Palette */
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --text: #334155;
+        }
+        
         .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
         }
         
         .dark-gradient-bg {
@@ -31,7 +42,7 @@
         }
         
         .text-gradient {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -42,21 +53,21 @@
         }
         
         .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
         
         .skill-bar {
-            height: 8px;
-            border-radius: 4px;
+            height: 6px;
+            border-radius: 3px;
             background: #e2e8f0;
             overflow: hidden;
         }
         
         .skill-progress {
             height: 100%;
-            border-radius: 4px;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
             transition: width 1s ease-in-out;
         }
         
@@ -69,21 +80,21 @@
             content: '';
             position: absolute;
             left: 0;
-            top: 10px;
+            top: 8px;
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
         }
         
         .timeline-item::after {
             content: '';
             position: absolute;
             left: 5px;
-            top: 22px;
+            top: 20px;
             width: 2px;
-            height: calc(100% - 10px);
-            background: #cbd5e0;
+            height: calc(100% - 8px);
+            background: #e2e8f0;
         }
         
         .timeline-item:last-child::after {
@@ -102,7 +113,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             transition: width 0.3s ease;
         }
         
@@ -114,7 +125,7 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -128,7 +139,7 @@
         
         .typewriter {
             overflow: hidden;
-            border-right: 3px solid #667eea;
+            border-right: 3px solid var(--primary);
             white-space: nowrap;
             animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
         }
@@ -140,7 +151,7 @@
         
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: #667eea; }
+            50% { border-color: var(--primary); }
         }
         
         .glass-effect {
@@ -149,718 +160,900 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
+        /* Improved Cards */
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .card-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        /* Section spacing */
+        section {
+            padding: 5rem 0;
+        }
+        
+        /* Subtle hover effects */
+        .hover-lift:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Consistent button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            font-weight: 500;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-weight: 500;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Improved form styles */
+        .form-input {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        
+        /* Fixed header spacing */
+        main {
+            padding-top: 80px;
+        }
+        
+        /* Tag styles */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            background: #eef2ff;
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        /* Stats counter */
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-  emailjs.init("HEI_8nAJbqPzOGwzR");
-</script>
-
+    <script>
+        emailjs.init("HEI_8nAJbqPzOGwzR");
+    </script>
+    
 </head>
 <body class="bg-gray-50 text-gray-800">
     
     <!-- Navigation -->
-    <nav class="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
+    <nav class="fixed w-full bg-white shadow-sm z-50 border-b border-gray-100">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <a href="#home" class="text-2xl font-bold text-gradient">Rajesh<span class="text-purple-600">.</span></a>
+                <a href="#home" class="text-2xl font-bold text-gradient hover:opacity-90 transition">Rajesh<span class="text-indigo-600">.</span></a>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link font-medium text-gray-700 hover:text-purple-600 transition">Home</a>
-                    <a href="#about" class="nav-link font-medium text-gray-700 hover:text-purple-600 transition">About</a>
-                    <a href="#education" class="nav-link font-medium text-gray-700 hover:text-purple-600 transition">Education</a>
-                    <a href="#skills" class="nav-link font-medium text-gray-700 hover:text-purple-600 transition">Skills</a>
-                    <a href="#projects" class="nav-link font-medium text-gray-700 hover:text-purple-600 transition">Projects</a>
-                    <a href="#contact" class="nav-link font-medium text-gray-700 hover:text-purple-600 transition">Contact</a>
+                    <a href="#home" class="nav-link font-medium text-gray-600 hover:text-indigo-600 transition">Home</a>
+                    <a href="#about" class="nav-link font-medium text-gray-600 hover:text-indigo-600 transition">About</a>
+                    <a href="#education" class="nav-link font-medium text-gray-600 hover:text-indigo-600 transition">Education</a>
+                    <a href="#skills" class="nav-link font-medium text-gray-600 hover:text-indigo-600 transition">Skills</a>
+                    <a href="#projects" class="nav-link font-medium text-gray-600 hover:text-indigo-600 transition">Projects</a>
+                    <a href="#contact" class="nav-link font-medium text-gray-600 hover:text-indigo-600 transition">Contact</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button id="menuBtn" class="md:hidden text-gray-700">
+                <button id="menuBtn" class="md:hidden text-gray-600 hover:text-indigo-600">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
             
             <!-- Mobile Menu -->
-            <div id="mobileMenu" class="md:hidden hidden mt-4 space-y-4">
-                <a href="#home" class="block font-medium text-gray-700 hover:text-purple-600 transition">Home</a>
-                <a href="#about" class="block font-medium text-gray-700 hover:text-purple-600 transition">About</a>
-                <a href="#education" class="block font-medium text-gray-700 hover:text-purple-600 transition">Education</a>
-                <a href="#skills" class="block font-medium text-gray-700 hover:text-purple-600 transition">Skills</a>
-                <a href="#projects" class="block font-medium text-gray-700 hover:text-purple-600 transition">Projects</a>
-                <a href="#contact" class="block font-medium text-gray-700 hover:text-purple-600 transition">Contact</a>
+            <div id="mobileMenu" class="md:hidden hidden mt-4 space-y-4 bg-white p-4 rounded-lg shadow-lg">
+                <a href="#home" class="block font-medium text-gray-600 hover:text-indigo-600 transition py-2">Home</a>
+                <a href="#about" class="block font-medium text-gray-600 hover:text-indigo-600 transition py-2">About</a>
+                <a href="#education" class="block font-medium text-gray-600 hover:text-indigo-600 transition py-2">Education</a>
+                <a href="#skills" class="block font-medium text-gray-600 hover:text-indigo-600 transition py-2">Skills</a>
+                <a href="#projects" class="block font-medium text-gray-600 hover:text-indigo-600 transition py-2">Projects</a>
+                <a href="#contact" class="block font-medium text-gray-600 hover:text-indigo-600 transition py-2">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="pt-24 pb-20 gradient-bg text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full translate-x-1/3 translate-y-1/3"></div>
-        </div>
-        
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="flex flex-col lg:flex-row items-center justify-between">
-                <div class="lg:w-1/2 mb-12 lg:mb-0 animate-fadeInUp">
-                    <p class="text-lg mb-4 opacity-90"><i class="fas fa-hand-wave mr-2"></i>Hello, I'm</p>
-                    <h1 class="text-5xl md:text-6xl font-bold mb-4">Rajesh <span class="text-yellow-300">K</span></h1>
-                    <div class="typewriter text-2xl md:text-3xl font-semibold mb-6">
-                        Full Stack Developer
-                    </div>
-                    <p class="text-lg mb-8 opacity-90 max-w-lg">
-                        Passionate software developer specializing in MERN Stack, Python & Java, 
-                        creating functional and user-friendly applications with focus on performance and modern design.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#contact" class="px-8 py-3 bg-white text-purple-600 font-semibold rounded-lg hover:bg-gray-100 transition shadow-lg flex items-center">
-                            <i class="fas fa-paper-plane mr-2"></i> Hire Me
-                        </a>
-                        <a href="Rajesh_K_Resume.pdf" download class="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition flex items-center">
-                            <i class="fas fa-download mr-2"></i> Download CV
-                        </a>
-                    </div>
-                </div>
-                <div class="lg:w-1/2 flex justify-center">
-                    <div class="relative">
-                        <div class="w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-2xl">
-                            <img src="rajesh.jpg" alt="Rajesh K" class="w-full h-full object-cover" 
-                                 onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80'">
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
+            <div class="container mx-auto px-6 py-24 relative">
+                <div class="flex flex-col lg:flex-row items-center justify-between">
+                    <div class="lg:w-1/2 mb-12 lg:mb-0 animate-fadeInUp">
+                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-indigo-100 text-indigo-600 mb-6">
+                            <i class="fas fa-hand-wave mr-2"></i>
+                            <span class="font-medium">Hello, I'm</span>
                         </div>
-                        <div class="absolute -bottom-4 -right-4 bg-white text-purple-600 p-4 rounded-lg shadow-xl">
-                            <div class="text-2xl font-bold">9.21</div>
-                            <div class="text-sm">BCA CGPA</div>
+                        <h1 class="text-5xl md:text-6xl font-bold mb-4 text-gray-900">
+                            Rajesh <span class="text-indigo-600">K</span>
+                        </h1>
+                        <div class="typewriter text-2xl md:text-3xl font-semibold mb-6 text-gray-700">
+                            Full Stack Developer
+                        </div>
+                        <p class="text-lg mb-8 text-gray-600 max-w-lg">
+                            Passionate software developer specializing in MERN Stack, Python & Java, 
+                            creating functional and user-friendly applications with focus on performance and modern design.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#contact" class="btn-primary inline-flex items-center">
+                                <i class="fas fa-paper-plane mr-2"></i> Get In Touch
+                            </a>
+                            <a href="#projects" class="btn-outline inline-flex items-center">
+                                <i class="fas fa-code mr-2"></i> View Projects
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex justify-center lg:justify-end">
+                        <div class="relative">
+                            <div class="w-72 h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden border-4 border-white shadow-2xl">
+                                <img src="rajesh.jpg" alt="Rajesh K" class="w-full h-full object-cover" 
+                                     onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80'">
+                            </div>
+                            <div class="absolute -bottom-4 -right-4 bg-white p-4 rounded-xl shadow-xl border border-gray-100">
+                                <div class="text-2xl font-bold text-gradient">9.21</div>
+                                <div class="text-sm text-gray-500">BCA CGPA</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-4">About <span class="text-gradient">Me</span></h2>
-            <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-                A position that creates an opportunity to use my knowledge, skills, and potential 
-                towards achieving organizational goals while providing a platform for learning and self-improvement.
-            </p>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="order-2 md:order-1">
-                    <h3 class="text-2xl font-bold mb-6 flex items-center">
-                        <i class="fas fa-user-tie text-purple-600 mr-3"></i> Software Developer
-                    </h3>
-                    <p class="text-gray-600 mb-6">
-                        I'm a passionate software developer with expertise in full-stack development, 
-                        currently pursuing my Master's in Computer Applications. I love building 
-                        efficient, scalable applications with modern technologies.
+        <!-- About Section -->
+        <section id="about" class="bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">About <span class="text-gradient">Me</span></h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        A position that creates an opportunity to use my knowledge, skills, and potential 
+                        towards achieving organizational goals while providing a platform for learning and self-improvement.
                     </p>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-                        <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-purple-50 transition">
-                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
-                                <i class="fas fa-user text-purple-600"></i>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 md:order-1">
+                        <h3 class="text-2xl font-bold mb-6 flex items-center">
+                            <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-user-tie text-indigo-600"></i>
                             </div>
-                            <div>
-                                <div class="font-semibold">Name:</div>
-                                <div class="text-gray-600">Rajesh K</div>
+                            Software Developer
+                        </h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            I'm a passionate software developer with expertise in full-stack development, 
+                            currently pursuing my Master's in Computer Applications. I love building 
+                            efficient, scalable applications with modern technologies.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                            <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-indigo-50 transition">
+                                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                                    <i class="fas fa-user text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-sm text-gray-500">Name:</div>
+                                    <div class="text-gray-800">Rajesh K</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-purple-50 transition">
-                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
-                                <i class="fas fa-envelope text-purple-600"></i>
+                            <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-indigo-50 transition">
+                                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                                    <i class="fas fa-envelope text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-sm text-gray-500">Email:</div>
+                                    <div class="text-gray-800">Rajesh3655r@gmail.com</div>
+                                </div>
                             </div>
-                            <div>
-                                <div class="font-semibold">Email:</div>
-                                <div class="text-gray-600">Rajesh3655r@gmail.com</div>
+                            <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-indigo-50 transition">
+                                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                                    <i class="fas fa-phone text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-sm text-gray-500">Phone:</div>
+                                    <div class="text-gray-800">+91 8217354109</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-purple-50 transition">
-                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
-                                <i class="fas fa-phone text-purple-600"></i>
-                            </div>
-                            <div>
-                                <div class="font-semibold">Phone:</div>
-                                <div class="text-gray-600">+91 8217354109</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-purple-50 transition">
-                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
-                                <i class="fas fa-map-marker-alt text-purple-600"></i>
-                            </div>
-                            <div>
-                                <div class="font-semibold">Location:</div>
-                                <div class="text-gray-600">Bengaluru, Karnataka</div>
+                            <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-indigo-50 transition">
+                                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-sm text-gray-500">Location:</div>
+                                    <div class="text-gray-800">Bengaluru, Karnataka</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <a href="#contact" class="px-8 py-3 gradient-bg text-white font-semibold rounded-lg hover:opacity-90 transition shadow-lg inline-flex items-center">
-                        <i class="fas fa-comment-dots mr-2"></i> Contact Me
-                    </a>
+                    <div class="order-1 md:order-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="text-xl font-bold text-gray-800">Quick Facts</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-graduation-cap text-indigo-600"></i>
+                                            </div>
+                                            <div>
+                                                <div class="font-semibold">Education</div>
+                                                <div class="text-gray-600 text-sm">MCA (Pursuing)</div>
+                                            </div>
+                                        </div>
+                                        <div class="text-indigo-600 font-bold">2024-26</div>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-laptop-code text-indigo-600"></i>
+                                            </div>
+                                            <div>
+                                                <div class="font-semibold">Specialization</div>
+                                                <div class="text-gray-600 text-sm">Full Stack Development</div>
+                                            </div>
+                                        </div>
+                                        <div class="tag">MERN</div>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-tasks text-indigo-600"></i>
+                                            </div>
+                                            <div>
+                                                <div class="font-semibold">Projects</div>
+                                                <div class="text-gray-600 text-sm">Completed</div>
+                                            </div>
+                                        </div>
+                                        <div class="text-2xl font-bold text-gradient">10+</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">My <span class="text-gradient">Education</span></h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        My academic journey and qualifications in computer applications
+                    </p>
                 </div>
                 
-                <div class="order-1 md:order-2">
-                    <div class="bg-gray-50 p-8 rounded-2xl shadow-lg">
-                        <h4 class="text-xl font-bold mb-6 text-gray-800">Quick Facts</h4>
+                <div class="max-w-6xl mx-auto">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- MCA -->
+                        <div class="card card-hover">
+                            <div class="card-body">
+                                <div class="flex items-start mb-4">
+                                    <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
+                                        <i class="fas fa-university text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-gray-900">MCA</h3>
+                                        <h4 class="text-indigo-600 font-semibold">Presidency University</h4>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-4">Currently pursuing Master's in Computer Applications</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="tag">2024 - 2026</span>
+                                    <span class="text-gray-500 text-sm">Bengaluru, KA</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- BCA -->
+                        <div class="card card-hover">
+                            <div class="card-body">
+                                <div class="flex items-start mb-4">
+                                    <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
+                                        <i class="fas fa-graduation-cap text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-gray-900">BCA</h3>
+                                        <h4 class="text-indigo-600 font-semibold">Vidyavahini First Grade College</h4>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-4">Bachelor's in Computer Applications</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="tag bg-indigo-100 text-indigo-600">
+                                        CGPA: 9.21
+                                    </span>
+                                    <span class="text-gray-500 text-sm">2021 - 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">My <span class="text-gradient">Skills</span></h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        Technologies and tools I work with to build amazing applications
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Programming -->
+                    <div class="card card-hover">
+                        <div class="card-body">
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
+                                    <i class="fas fa-code text-white text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900">Programming</h3>
+                            </div>
+                            
+                            <div class="space-y-5">
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-semibold text-gray-700">Java</span>
+                                        <span class="font-bold text-indigo-600">90%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-semibold text-gray-700">Python</span>
+                                        <span class="font-bold text-indigo-600">85%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Web Technologies -->
+                    <div class="card card-hover">
+                        <div class="card-body">
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
+                                    <i class="fas fa-globe text-white text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900">Web Technologies</h3>
+                            </div>
+                            
+                            <div class="space-y-5">
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-semibold text-gray-700">HTML/CSS</span>
+                                        <span class="font-bold text-indigo-600">95%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-semibold text-gray-700">JavaScript</span>
+                                        <span class="font-bold text-indigo-600">90%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-semibold text-gray-700">React.js</span>
+                                        <span class="font-bold text-indigo-600">85%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Full Stack & Databases -->
+                    <div class="card card-hover">
+                        <div class="card-body">
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
+                                    <i class="fas fa-database text-white text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900">Full Stack & DB</h3>
+                            </div>
+                            
+                            <div class="space-y-5">
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-semibold text-gray-700">MERN Stack</span>
+                                        <span class="font-bold text-indigo-600">85%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-semibold text-gray-700">SQL</span>
+                                        <span class="font-bold text-indigo-600">80%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-semibold text-gray-700">MongoDB</span>
+                                        <span class="font-bold text-indigo-600">85%</span>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">My <span class="text-gradient">Projects</span></h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        Some of my recent work and projects I've developed
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Project 1 -->
+                    <div class="card card-hover">
+                        <div class="h-48 overflow-hidden">
+                            <img src="project-grocery.jpg" alt="Shop4Grocery" 
+                                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                                 onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold text-gray-900">Shop4Grocery</h3>
+                                <span class="tag bg-green-100 text-green-600">MERN</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                A full-stack grocery platform with user authentication, product catalog, 
+                                shopping cart, and order management system.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tag">MongoDB</span>
+                                <span class="tag">Express.js</span>
+                                <span class="tag">React.js</span>
+                                <span class="tag">Node.js</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 text-sm">Full Stack Project</span>
+                                <span class="text-indigo-600 font-semibold">Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="card card-hover">
+                        <div class="h-48 overflow-hidden">
+                            <img src="project-voting.jpg" alt="Voting System" 
+                                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                                 onerror="this.src='https://images.unsplash.com/photo-1551135049-8a33b2fb2f5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold text-gray-900">Voting Management System</h3>
+                                <span class="tag bg-blue-100 text-blue-600">Flask</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Flask & MongoDB-based voting portal with authentication, 
+                                admin panel, and live results dashboard.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tag">Python</span>
+                                <span class="tag">Flask</span>
+                                <span class="tag">MongoDB</span>
+                                <span class="tag">Bootstrap</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <a href="https://voting-management-system-ue47.onrender.com" target="_blank" 
+                                   class="text-indigo-600 font-semibold hover:text-indigo-700 flex items-center">
+                                    Live Demo <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                                <span class="text-sm text-gray-500">Live</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="card card-hover">
+                        <div class="h-48 overflow-hidden">
+                            <img src="project-pg-locator.jpg" alt="FindNearPG" 
+                                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                                 onerror="this.src='https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold text-gray-900">FindNearPG – PG Locator</h3>
+                                <span class="tag bg-orange-100 text-orange-600">API Integration</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Location-based app to find PG accommodations with Google Maps integration, 
+                                real-time data updates, and user reviews.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tag">Python</span>
+                                <span class="tag">Flask</span>
+                                <span class="tag">MongoDB</span>
+                                <span class="tag">Google Maps API</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <a href="https://findnearpg.onrender.com" target="_blank" 
+                                   class="text-indigo-600 font-semibold hover:text-indigo-700 flex items-center">
+                                    Live Demo <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                                <span class="text-sm text-gray-500">Live</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">Contact <span class="text-gradient">Me</span></h2>
+                    <p class="text-gray-300 max-w-2xl mx-auto">
+                        Feel free to reach out for collaborations or just to say hello!
+                    </p>
+                </div>
+                
+                <div id="flashMessages" class="max-w-2xl mx-auto mb-8"></div>
+                
+                <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                    <!-- Contact Info -->
+                    <div>
+                        <h3 class="text-2xl font-bold mb-8">Get in Touch</h3>
+                        
                         <div class="space-y-6">
-                            <div class="flex items-center justify-between p-4 bg-white rounded-lg">
-                                <div class="flex items-center">
-                                    <i class="fas fa-graduation-cap text-purple-600 text-xl mr-3"></i>
-                                    <div>
-                                        <div class="font-semibold">Education</div>
-                                        <div class="text-gray-600 text-sm">MCA (Pursuing)</div>
-                                    </div>
+                            <div class="flex items-start space-x-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition">
+                                <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
                                 </div>
-                                <div class="text-purple-600 font-bold">2024-26</div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Location</h4>
+                                    <p class="text-gray-300">Bengaluru, Karnataka, India</p>
+                                </div>
                             </div>
                             
-                            <div class="flex items-center justify-between p-4 bg-white rounded-lg">
-                                <div class="flex items-center">
-                                    <i class="fas fa-laptop-code text-purple-600 text-xl mr-3"></i>
-                                    <div>
-                                        <div class="font-semibold">Specialization</div>
-                                        <div class="text-gray-600 text-sm">Full Stack Development</div>
-                                    </div>
+                            <div class="flex items-start space-x-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition">
+                                <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-envelope text-white"></i>
                                 </div>
-                                <div class="text-purple-600 font-bold">MERN</div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Email</h4>
+                                    <a href="mailto:Rajesh3655r@gmail.com" class="text-gray-300 hover:text-white">
+                                        Rajesh3655r@gmail.com
+                                    </a>
+                                </div>
                             </div>
                             
-                            <div class="flex items-center justify-between p-4 bg-white rounded-lg">
-                                <div class="flex items-center">
-                                    <i class="fas fa-tasks text-purple-600 text-xl mr-3"></i>
-                                    <div>
-                                        <div class="font-semibold">Projects</div>
-                                        <div class="text-gray-600 text-sm">Completed</div>
-                                    </div>
+                            <div class="flex items-start space-x-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition">
+                                <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-phone text-white"></i>
                                 </div>
-                                <div class="text-purple-600 font-bold">10+</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-4">My <span class="text-gradient">Education</span></h2>
-            <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-                My academic journey and qualifications in computer applications
-            </p>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- MCA -->
-                    <div class="card-hover bg-white p-6 rounded-xl shadow">
-                        <div class="flex items-start mb-4">
-                            <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
-                                <i class="fas fa-university text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold">MCA</h3>
-                                <h4 class="text-purple-600 font-semibold">Presidency University</h4>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">Currently pursuing Master's in Computer Applications</p>
-                        <div class="flex justify-between items-center">
-                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">2024 - 2026</span>
-                            <span class="text-gray-500 text-sm">Bengaluru, KA</span>
-                        </div>
-                    </div>
-                    
-                    <!-- BCA -->
-                    <div class="card-hover bg-white p-6 rounded-xl shadow">
-                        <div class="flex items-start mb-4">
-                            <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
-                                <i class="fas fa-graduation-cap text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold">BCA</h3>
-                                <h4 class="text-purple-600 font-semibold">Vidyavahini First Grade College</h4>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">Bachelor's in Computer Applications</p>
-                        <div class="flex justify-between items-center">
-                            <span class="bg-gradient-to-r from-purple-600 to-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                CGPA: 9.21
-                            </span>
-                            <span class="text-gray-500 text-sm">2021 - 2024</span>
-                        </div>
-                    </div>
-                    
-                    <!-- 12th -->
-                    <div class="card-hover bg-white p-6 rounded-xl shadow">
-                        <div class="flex items-start mb-4">
-                            <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
-                                <i class="fas fa-school text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold">12th (PUC)</h3>
-                                <h4 class="text-purple-600 font-semibold">Sarvodaya PU College</h4>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">Pre-University with PCM & Computer Science</p>
-                        <div class="flex justify-between items-center">
-                            <span class="bg-gradient-to-r from-purple-600 to-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                74%
-                            </span>
-                            <span class="text-gray-500 text-sm">2019 - 2021</span>
-                        </div>
-                    </div>
-                    
-                    <!-- 10th -->
-                    <div class="card-hover bg-white p-6 rounded-xl shadow">
-                        <div class="flex items-start mb-4">
-                            <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
-                                <i class="fas fa-book text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold">10th (SSLC)</h3>
-                                <h4 class="text-purple-600 font-semibold">Sree Siddaganga High School</h4>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4">Secondary School Education</p>
-                        <div class="flex justify-between items-center">
-                            <span class="bg-gradient-to-r from-purple-600 to-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                81%
-                            </span>
-                            <span class="text-gray-500 text-sm">2016 - 2019</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-4">My <span class="text-gradient">Skills</span></h2>
-            <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-                Technologies and tools I work with to build amazing applications
-            </p>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Programming -->
-                <div class="card-hover bg-gray-50 p-8 rounded-xl shadow">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
-                            <i class="fas fa-code text-white text-xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold">Programming</h3>
-                    </div>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-semibold">Java</span>
-                                <span class="font-bold text-purple-600">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Phone</h4>
+                                    <a href="tel:+918217354109" class="text-gray-300 hover:text-white">
+                                        +91 8217354109
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-semibold">Python</span>
-                                <span class="font-bold text-purple-600">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Web Technologies -->
-                <div class="card-hover bg-gray-50 p-8 rounded-xl shadow">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
-                            <i class="fas fa-globe text-white text-xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold">Web Technologies</h3>
-                    </div>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-semibold">HTML/CSS</span>
-                                <span class="font-bold text-purple-600">95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-semibold">JavaScript</span>
-                                <span class="font-bold text-purple-600">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-semibold">React.js</span>
-                                <span class="font-bold text-purple-600">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Full Stack & Databases -->
-                <div class="card-hover bg-gray-50 p-8 rounded-xl shadow">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
-                            <i class="fas fa-database text-white text-xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold">Full Stack & DB</h3>
-                    </div>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-semibold">MERN Stack</span>
-                                <span class="font-bold text-purple-600">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-semibold">SQL</span>
-                                <span class="font-bold text-purple-600">80%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-semibold">MongoDB</span>
-                                <span class="font-bold text-purple-600">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-4">My <span class="text-gradient">Projects</span></h2>
-            <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-                Some of my recent work and projects I've developed
-            </p>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="card-hover bg-white rounded-xl shadow-lg overflow-hidden">
-                    <div class="h-48 overflow-hidden">
-                        <img src="project-grocery.jpg" alt="Shop4Grocery" 
-                             class="w-full h-full object-cover hover:scale-110 transition duration-500"
-                             onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold">Shop4Grocery</h3>
-                            <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm font-semibold">MERN</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">
-                            A full-stack grocery platform with user authentication, product catalog, 
-                            shopping cart, and order management system.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">MongoDB</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Express.js</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">React.js</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Node.js</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-500 text-sm">Full Stack Project</span>
-                            <span class="text-purple-600 font-semibold">Coming Soon</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="card-hover bg-white rounded-xl shadow-lg overflow-hidden">
-                    <div class="h-48 overflow-hidden">
-                        <img src="project-voting.jpg" alt="Voting System" 
-                             class="w-full h-full object-cover hover:scale-110 transition duration-500"
-                             onerror="this.src='https://images.unsplash.com/photo-1551135049-8a33b2fb2f5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold">Voting Management System</h3>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold">Flask</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">
-                            Flask & MongoDB-based voting portal with authentication, 
-                            admin panel, and live results dashboard.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Python</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Flask</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">MongoDB</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Bootstrap</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <a href="https://voting-management-system-ue47.onrender.com" target="_blank" 
-                               class="text-purple-600 font-semibold hover:text-purple-700 flex items-center">
-                                Live Demo <i class="fas fa-external-link-alt ml-2"></i>
-                            </a>
-                            <span class="text-sm text-gray-500">Live</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="card-hover bg-white rounded-xl shadow-lg overflow-hidden">
-                    <div class="h-48 overflow-hidden">
-                        <img src="project-pg-locator.jpg" alt="FindNearPG" 
-                             class="w-full h-full object-cover hover:scale-110 transition duration-500"
-                             onerror="this.src='https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold">FindNearPG – PG Locator</h3>
-                            <span class="px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-semibold">API Integration</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">
-                            Location-based app to find PG accommodations with Google Maps integration, 
-                            real-time data updates, and user reviews.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Python</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Flask</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">MongoDB</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Google Maps API</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <a href="https://findnearpg.onrender.com" target="_blank" 
-                               class="text-purple-600 font-semibold hover:text-purple-700 flex items-center">
-                                Live Demo <i class="fas fa-external-link-alt ml-2"></i>
-                            </a>
-                            <span class="text-sm text-gray-500">Live</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 dark-gradient-bg text-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-4">Contact <span class="text-gradient">Me</span></h2>
-            <p class="text-gray-300 text-center mb-12 max-w-2xl mx-auto">
-                Feel free to reach out for collaborations or just to say hello!
-            </p>
-            
-            <!-- Flash Messages -->
-            <div id="flashMessages" class="max-w-2xl mx-auto mb-8"></div>
-            
-            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                <!-- Contact Info -->
-                <div>
-                    <h3 class="text-2xl font-bold mb-8">Get in Touch</h3>
-                    
-                    <div class="space-y-8">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-map-marker-alt text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg">Location</h4>
-                                <p class="text-gray-300">Bengaluru, Karnataka, India</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-envelope text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg">Email</h4>
-                                <a href="mailto:Rajesh3655r@gmail.com" class="text-gray-300 hover:text-white">
-                                    Rajesh3655r@gmail.com
+                        <!-- Social Links -->
+                        <div class="mt-12">
+                            <h4 class="font-bold text-lg mb-6">Connect with me</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://www.linkedin.com/in/rajesh-k-7b4aa627b" target="_blank" 
+                                   class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-indigo-600 hover:transform hover:scale-110 transition">
+                                    <i class="fab fa-linkedin-in text-white"></i>
+                                </a>
+                                <a href="https://github.com/Rajesh3655" target="_blank" 
+                                   class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-indigo-600 hover:transform hover:scale-110 transition">
+                                    <i class="fab fa-github text-white"></i>
+                                </a>
+                                <a href="https://www.instagram.com/dnameis_rajesh?igsh=cnE2YW1vbG5qNzQ1" target="_blank" 
+                                   class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-indigo-600 hover:transform hover:scale-110 transition">
+                                    <i class="fab fa-instagram text-white"></i>
                                 </a>
                             </div>
                         </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-phone text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg">Phone</h4>
-                                <a href="tel:+918217354109" class="text-gray-300 hover:text-white">
-                                    +91 8217354109
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-graduation-cap text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg">Education</h4>
-                                <p class="text-gray-300">MCA, Presidency University (2024-2026)</p>
-                                <p class="text-gray-300">BCA, CGPA: 9.21</p>
-                            </div>
-                        </div>
                     </div>
                     
-                    <!-- Social Links -->
-                    <div class="mt-12">
-                        <h4 class="font-bold text-lg mb-6">Connect with me</h4>
-                        <div class="flex space-x-4">
-                            <a href="https://www.linkedin.com/in/rajesh-k-7b4aa627b" target="_blank" 
-                               class="w-12 h-12 rounded-full glass-effect flex items-center justify-center hover:bg-purple-600 transition">
-                                <i class="fab fa-linkedin-in text-white"></i>
-                            </a>
-                            <a href="https://github.com/Rajesh3655" target="_blank" 
-                               class="w-12 h-12 rounded-full glass-effect flex items-center justify-center hover:bg-purple-600 transition">
-                                <i class="fab fa-github text-white"></i>
-                            </a>
-                            <a href="https://www.instagram.com/dnameis_rajesh?igsh=cnE2YW1vbG5qNzQ1" target="_blank" 
-                               class="w-12 h-12 rounded-full glass-effect flex items-center justify-center hover:bg-purple-600 transition">
-                                <i class="fab fa-instagram text-white"></i>
-                            </a>
-                            <a href="#" 
-                               class="w-12 h-12 rounded-full glass-effect flex items-center justify-center hover:bg-purple-600 transition">
-                                <i class="fab fa-twitter text-white"></i>
-                            </a>
-                        </div>
+                    <!-- Contact Form -->
+                    <div>
+                        <h3 class="text-2xl font-bold mb-8">Send me a message</h3>
+                        
+                        <form id="contactForm" class="space-y-6">
+                            <div>
+                                <label for="name" class="block mb-2 font-medium">Name *</label>
+                                <input type="text" id="name" name="name" required 
+                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-gray-400">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block mb-2 font-medium">Email *</label>
+                                <input type="email" id="email" name="email" required 
+                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-gray-400">
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block mb-2 font-medium">Subject</label>
+                                <input type="text" id="subject" name="subject" 
+                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-gray-400">
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block mb-2 font-medium">Message *</label>
+                                <textarea id="message" name="message" rows="5" required 
+                                          class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-gray-400"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full btn-primary">
+                                <i class="fas fa-paper-plane mr-2"></i> Send Message
+                            </button>
+                        </form>
                     </div>
-                </div>
-                
-                <!-- Contact Form -->
-                <div>
-                    <h3 class="text-2xl font-bold mb-8">Send me a message</h3>
-                    
-                    <form id="contactForm" class="space-y-6">
-                        <div>
-                            <label for="name" class="block mb-2 font-medium">Name *</label>
-                            <input type="text" id="name" name="name" required 
-                                   class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-400">
-                        </div>
-                        
-                        <div>
-                            <label for="email" class="block mb-2 font-medium">Email *</label>
-                            <input type="email" id="email" name="email" required 
-                                   class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-400">
-                        </div>
-                        
-                        <div>
-                            <label for="subject" class="block mb-2 font-medium">Subject</label>
-                            <input type="text" id="subject" name="subject" 
-                                   class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-400">
-                        </div>
-                        
-                        <div>
-                            <label for="message" class="block mb-2 font-medium">Message *</label>
-                            <textarea id="message" name="message" rows="5" required 
-                                      class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-400"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="w-full px-8 py-4 gradient-bg text-white font-semibold rounded-lg hover:opacity-90 transition shadow-lg flex items-center justify-center">
-                            <i class="fas fa-paper-plane mr-2"></i> Send Message
-                        </button>
-                    </form>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
+    <footer class="bg-gray-900 text-white py-12">
         <div class="container mx-auto px-6">
             <div class="text-center">
-                <a href="#home" class="text-2xl font-bold text-gradient inline-block mb-4">Rajesh<span class="text-purple-400">.</span></a>
-                <p class="text-gray-400 mb-6">© 2024 Rajesh K. All Rights Reserved</p>
+                <a href="#home" class="text-2xl font-bold text-gradient inline-block mb-4 hover:opacity-90 transition">Rajesh<span class="text-indigo-400">.</span></a>
+                <p class="text-gray-400 mb-8">© 2024 Rajesh K. All Rights Reserved</p>
                 
-                <div class="flex justify-center space-x-6">
-                    <a href="https://www.linkedin.com/in/rajesh-k-7b4aa627b" target="_blank" class="text-gray-400 hover:text-white transition">
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="https://www.linkedin.com/in/rajesh-k-7b4aa627b" target="_blank" 
+                       class="text-gray-400 hover:text-white transition hover:transform hover:scale-110">
                         <i class="fab fa-linkedin-in text-xl"></i>
                     </a>
-                    <a href="https://github.com/Rajesh3655" target="_blank" class="text-gray-400 hover:text-white transition">
+                    <a href="https://github.com/Rajesh3655" target="_blank" 
+                       class="text-gray-400 hover:text-white transition hover:transform hover:scale-110">
                         <i class="fab fa-github text-xl"></i>
                     </a>
-                    <a href="https://www.instagram.com/dnameis_rajesh?igsh=cnE2YW1vbG5qNzQ1" target="_blank" class="text-gray-400 hover:text-white transition">
+                    <a href="https://www.instagram.com/dnameis_rajesh?igsh=cnE2YW1vbG5qNzQ1" target="_blank" 
+                       class="text-gray-400 hover:text-white transition hover:transform hover:scale-110">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <i class="fab fa-twitter text-xl"></i>
-                    </a>
                 </div>
+                
+                <p class="text-gray-500 text-sm">
+                    Designed with <i class="fas fa-heart text-red-400 mx-1"></i> by Rajesh K
+                </p>
             </div>
         </div>
     </footer>
-<script>
-document.getElementById("contactForm").addEventListener("submit", function(e){
-    e.preventDefault();
 
-    const btn = this.querySelector("button");
-    const original = btn.innerHTML;
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuBtn').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
 
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
-    btn.disabled = true;
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
 
-    const params = {
-        name: document.getElementById("name").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        subject: document.getElementById("subject").value.trim() || "No Subject",
-        message: document.getElementById("message").value.trim()
-    };
+        // Active navigation link
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-    if(!params.name || !params.email || !params.message){
-        Swal.fire("Error","Please fill all required fields","error");
-        btn.innerHTML = original;
-        btn.disabled = false;
-        return;
-    }
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
 
-    emailjs.send(
-        "SERVICE_ID",
-        "template_hrnbxgq",
-        params
-    ).then(()=>{
-        Swal.fire("Success","Message sent successfully!","success");
-        document.getElementById("contactForm").reset();
-    }).catch(err=>{
-        console.error(err);
-        Swal.fire("Error","Failed to send message","error");
-    }).finally(()=>{
-        btn.innerHTML = original;
-        btn.disabled = false;
-    });
-});
-</script>
+        // Animate skill bars on scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
 
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-progress');
+                    skillBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 300);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('#skills .card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // EmailJS form submission
+        document.getElementById("contactForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const btn = this.querySelector("button");
+            const original = btn.innerHTML;
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+            btn.disabled = true;
+
+            const params = {
+                name: document.getElementById("name").value.trim(),
+                email: document.getElementById("email").value.trim(),
+                subject: document.getElementById("subject").value.trim() || "Portfolio Contact",
+                message: document.getElementById("message").value.trim()
+            };
+
+            if (!params.name || !params.email || !params.message) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Please fill all required fields',
+                    confirmButtonColor: '#4f46e5'
+                });
+                btn.innerHTML = original;
+                btn.disabled = false;
+                return;
+            }
+
+            // Replace with your EmailJS service ID and template ID
+            emailjs.send(
+                "YOUR_SERVICE_ID", // Replace with your service ID
+                "YOUR_TEMPLATE_ID", // Replace with your template ID
+                params
+            ).then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Message sent successfully!',
+                    confirmButtonColor: '#4f46e5'
+                });
+                document.getElementById("contactForm").reset();
+            }).catch(err => {
+                console.error(err);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed to send message. Please try again.',
+                    confirmButtonColor: '#4f46e5'
+                });
+            }).finally(() => {
+                btn.innerHTML = original;
+                btn.disabled = false;
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

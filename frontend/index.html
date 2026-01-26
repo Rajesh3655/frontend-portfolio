@@ -154,6 +154,11 @@
             scroll-behavior: smooth;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("HEI_8nAJbqPzOGwzR");
+</script>
+
 </head>
 <body class="bg-gray-50 text-gray-800">
     
@@ -816,190 +821,46 @@
             </div>
         </div>
     </footer>
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e){
+    e.preventDefault();
 
-    <script>
-        // Mobile Menu Toggle
-        document.getElementById('menuBtn').addEventListener('click', function() {
-            const menu = document.getElementById('mobileMenu');
-            const icon = this.querySelector('i');
-            
-            menu.classList.toggle('hidden');
-            
-            if (menu.classList.contains('hidden')) {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            } else {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            }
-        });
+    const btn = this.querySelector("button");
+    const original = btn.innerHTML;
 
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('mobileMenu').classList.add('hidden');
-                document.querySelector('#menuBtn i').classList.remove('fa-times');
-                document.querySelector('#menuBtn i').classList.add('fa-bars');
-            });
-        });
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+    btn.disabled = true;
 
-        // Active navigation on scroll
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (scrollY >= (sectionTop - 100)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
+    const params = {
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        subject: document.getElementById("subject").value.trim() || "No Subject",
+        message: document.getElementById("message").value.trim()
+    };
 
-        // Contact Form Submission
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const form = e.target;
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            
-            // Show loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
-            submitBtn.disabled = true;
-            
-            // Data to send
-            const formData = {
-                name: document.getElementById('name').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                subject: document.getElementById('subject').value.trim(),
-                message: document.getElementById('message').value.trim()
-            };
-            
-            // Validation
-            if (!formData.name || !formData.email || !formData.message) {
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Please fill all required fields.',
-                    icon: 'error',
-                    confirmButtonColor: '#e74c3c'
-                });
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                return;
-            }
-            
-            try {
-                // ⚠️ IMPORTANT: Replace this URL with your Render backend URL
-                const BACKEND_URL = "https://backend-portfolio-lqkh.onrender.com";
-                
-                const response = await fetch(`${BACKEND_URL}/api/send-message`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    // Show success message
-                    Swal.fire({
-                        title: 'Success!',
-                        text: result.message || 'Your message has been sent successfully!',
-                        icon: 'success',
-                        confirmButtonColor: '#667eea'
-                    });
-                    
-                    // Reset form
-                    form.reset();
-                } else {
-                    // Show error message
-                    Swal.fire({
-                        title: 'Error!',
-                        text: result.message || 'Failed to send message. Please try again.',
-                        icon: 'error',
-                        confirmButtonColor: '#e74c3c'
-                    });
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                // Show network error
-                Swal.fire({
-                    title: 'Network Error!',
-                    text: 'Please check your connection and try again.',
-                    icon: 'error',
-                    confirmButtonColor: '#e74c3c'
-                });
-            } finally {
-                // Reset button state
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
-        });
+    if(!params.name || !params.email || !params.message){
+        Swal.fire("Error","Please fill all required fields","error");
+        btn.innerHTML = original;
+        btn.disabled = false;
+        return;
+    }
 
-        // Animate skill bars when they come into view
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const skillBars = entry.target.querySelectorAll('.skill-progress');
-                    skillBars.forEach(bar => {
-                        const width = bar.style.width;
-                        bar.style.width = '0';
-                        setTimeout(() => {
-                            bar.style.width = width;
-                        }, 300);
-                    });
-                }
-            });
-        }, { threshold: 0.5 });
+    emailjs.send(
+        "SERVICE_ID",
+        "template_hrnbxgq",
+        params
+    ).then(()=>{
+        Swal.fire("Success","Message sent successfully!","success");
+        document.getElementById("contactForm").reset();
+    }).catch(err=>{
+        console.error(err);
+        Swal.fire("Error","Failed to send message","error");
+    }).finally(()=>{
+        btn.innerHTML = original;
+        btn.disabled = false;
+    });
+});
+</script>
 
-        // Observe skills section
-        const skillsSection = document.getElementById('skills');
-        if (skillsSection) {
-            observer.observe(skillsSection);
-        }
-
-        // Smooth scrolling for all anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                
-                if (href === '#') return;
-                
-                const targetElement = document.querySelector(href);
-                if (targetElement) {
-                    e.preventDefault();
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Add hover effect to project cards
-        document.querySelectorAll('.card-hover').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        });
-    </script>
 </body>
 </html>

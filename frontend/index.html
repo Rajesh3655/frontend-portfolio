@@ -17,6 +17,9 @@
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
     <style>
         * {
             font-family: 'Inter', sans-serif;
@@ -24,9 +27,9 @@
         
         /* Consistent Color Palette */
         :root {
-            --primary: #4f46e5;
-            --primary-dark: #4338ca;
-            --secondary: #7c3aed;
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
             --accent: #06b6d4;
             --dark: #0f172a;
             --light: #f8fafc;
@@ -53,52 +56,22 @@
         }
         
         .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
         }
         
         .skill-bar {
-            height: 6px;
-            border-radius: 3px;
+            height: 8px;
+            border-radius: 4px;
             background: #e2e8f0;
             overflow: hidden;
         }
         
         .skill-progress {
             height: 100%;
-            border-radius: 3px;
+            border-radius: 4px;
             background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-            transition: width 1s ease-in-out;
-        }
-        
-        .timeline-item {
-            position: relative;
-            padding-left: 30px;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 8px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 20px;
-            width: 2px;
-            height: calc(100% - 8px);
-            background: #e2e8f0;
-        }
-        
-        .timeline-item:last-child::after {
-            display: none;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .nav-link {
@@ -122,26 +95,16 @@
             width: 100%;
         }
         
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Improved Typewriter Animation */
+        .typewriter-container {
+            display: inline-block;
         }
         
-        .animate-fadeInUp {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-        
-        .typewriter {
+        .typewriter-text {
             overflow: hidden;
-            border-right: 3px solid var(--primary);
             white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            border-right: 3px solid var(--primary);
+            animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
         }
         
         @keyframes typing {
@@ -154,83 +117,102 @@
             50% { border-color: var(--primary); }
         }
         
+        .typewriter-cursor {
+            display: inline-block;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Pulse Animation */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Glass Effect */
         .glass-effect {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        /* Improved Cards */
-        .card {
-            background: white;
-            border-radius: 12px;
+        /* Gradient Text Animation */
+        .gradient-text-animate {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, #06b6d4 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s linear infinite;
+        }
+        
+        @keyframes gradient {
+            to {
+                background-position: 200% center;
+            }
+        }
+        
+        /* Project Card Shine Effect */
+        .project-card {
+            position: relative;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid #e2e8f0;
         }
         
-        .card-header {
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            border-bottom: 1px solid #e2e8f0;
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            transform: rotate(45deg);
+            transition: transform 0.6s ease;
         }
         
-        .card-body {
-            padding: 1.5rem;
+        .project-card:hover::before {
+            transform: rotate(45deg) translate(50%, 50%);
         }
         
-        /* Section spacing */
-        section {
-            padding: 5rem 0;
+        /* Particle Background */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
         
-        /* Subtle hover effects */
-        .hover-lift:hover {
-            transform: translateY(-2px);
-        }
-        
-        /* Consistent button styles */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            font-weight: 500;
-            padding: 0.75rem 2rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
-        }
-        
-        .btn-outline {
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            font-weight: 500;
-            padding: 0.75rem 2rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        /* Improved form styles */
-        .form-input {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        .particle {
+            position: absolute;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
         }
         
         /* Smooth scrolling */
@@ -248,21 +230,23 @@
         .tag {
             display: inline-flex;
             align-items: center;
-            background: #eef2ff;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
             color: var(--primary);
-            padding: 0.25rem 0.75rem;
+            padding: 0.375rem 1rem;
             border-radius: 20px;
             font-size: 0.875rem;
             font-weight: 500;
+            border: 1px solid rgba(99, 102, 241, 0.2);
         }
         
         /* Stats counter */
         .stat-card {
             background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
+            border-radius: 16px;
+            padding: 2rem;
             text-align: center;
             border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
         
         .stat-number {
@@ -272,6 +256,71 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
+        }
+        
+        /* Section divider */
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--primary) 50%, transparent 100%);
+            margin: 3rem auto;
+            max-width: 200px;
+        }
+        
+        /* 3D Card Effect */
+        .card-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .card-3d-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .card-3d:hover .card-3d-inner {
+            transform: rotateY(5deg) rotateX(5deg);
+        }
+        
+        /* Glow Effect */
+        .glow {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .glow:hover {
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+        }
+        
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 1rem);
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
@@ -283,7 +332,7 @@
 <body class="bg-gray-50 text-gray-800">
     
     <!-- Navigation -->
-    <nav class="fixed w-full bg-white shadow-sm z-50 border-b border-gray-100">
+    <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100 shadow-sm">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <a href="#home" class="text-2xl font-bold text-gradient hover:opacity-90 transition">Rajesh<span class="text-indigo-600">.</span></a>
@@ -299,13 +348,13 @@
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button id="menuBtn" class="md:hidden text-gray-600 hover:text-indigo-600">
+                <button id="menuBtn" class="md:hidden text-gray-600 hover:text-indigo-600 transition">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
             
             <!-- Mobile Menu -->
-            <div id="mobileMenu" class="md:hidden hidden mt-4 space-y-4 bg-white p-4 rounded-lg shadow-lg">
+            <div id="mobileMenu" class="md:hidden hidden mt-4 space-y-4 bg-white p-6 rounded-lg shadow-xl border border-gray-100">
                 <a href="#home" class="block font-medium text-gray-600 hover:text-indigo-600 transition py-2">Home</a>
                 <a href="#about" class="block font-medium text-gray-600 hover:text-indigo-600 transition py-2">About</a>
                 <a href="#education" class="block font-medium text-gray-600 hover:text-indigo-600 transition py-2">Education</a>
@@ -318,45 +367,78 @@
 
     <main>
         <!-- Hero Section -->
-        <section id="home" class="relative overflow-hidden">
+        <section id="home" class="relative overflow-hidden pt-0">
+            <!-- Animated Background -->
+            <div class="particles" id="particles"></div>
+            
             <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
-            <div class="container mx-auto px-6 py-24 relative">
+            
+            <!-- Floating Shapes -->
+            <div class="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+            <div class="absolute bottom-20 right-10 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse delay-1000"></div>
+            
+            <div class="container mx-auto px-6 py-24 relative z-10">
                 <div class="flex flex-col lg:flex-row items-center justify-between">
-                    <div class="lg:w-1/2 mb-12 lg:mb-0 animate-fadeInUp">
-                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-indigo-100 text-indigo-600 mb-6">
+                    <div class="lg:w-1/2 mb-12 lg:mb-0">
+                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-indigo-100 text-indigo-600 mb-6 animate__animated animate__fadeIn">
                             <i class="fas fa-hand-wave mr-2"></i>
                             <span class="font-medium">Hello, I'm</span>
                         </div>
-                        <h1 class="text-5xl md:text-6xl font-bold mb-4 text-gray-900">
-                            Rajesh <span class="text-indigo-600">K</span>
+                        <h1 class="text-5xl md:text-6xl font-bold mb-4 text-gray-900 animate__animated animate__fadeInUp">
+                            Rajesh <span class="text-gradient">K</span>
                         </h1>
-                        <div class="typewriter text-2xl md:text-3xl font-semibold mb-6 text-gray-700">
-                            Full Stack Developer
+                        
+                        <!-- Improved Typewriter -->
+                        <div class="mb-6 animate__animated animate__fadeInUp">
+                            <div class="typewriter-container">
+                                <span class="typewriter-text text-2xl md:text-3xl font-semibold text-gray-700">
+                                    Full Stack Developer
+                                </span>
+                                <span class="typewriter-cursor text-2xl md:text-3xl font-semibold text-indigo-600">|</span>
+                            </div>
                         </div>
-                        <p class="text-lg mb-8 text-gray-600 max-w-lg">
+                        
+                        <p class="text-lg mb-8 text-gray-600 max-w-lg animate__animated animate__fadeInUp animate__delay-1s">
                             Passionate software developer specializing in MERN Stack, Python & Java, 
                             creating functional and user-friendly applications with focus on performance and modern design.
                         </p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#contact" class="btn-primary inline-flex items-center">
+                        <div class="flex flex-wrap gap-4 animate__animated animate__fadeInUp animate__delay-1s">
+                            <a href="#contact" class="px-8 py-3 gradient-bg text-white font-semibold rounded-lg hover:opacity-90 transition-all shadow-lg hover:shadow-xl hover:scale-105 flex items-center pulse-animation">
                                 <i class="fas fa-paper-plane mr-2"></i> Get In Touch
                             </a>
-                            <a href="#projects" class="btn-outline inline-flex items-center">
-                                <i class="fas fa-code mr-2"></i> View Projects
+                            <a href="Rajesh_K_Resume.pdf" download class="px-8 py-3 border-2 border-indigo-600 text-indigo-600 font-semibold rounded-lg hover:bg-indigo-600 hover:text-white transition-all hover:shadow-lg flex items-center hover:scale-105">
+                                <i class="fas fa-download mr-2"></i> Download Resume
                             </a>
                         </div>
                     </div>
                     <div class="lg:w-1/2 flex justify-center lg:justify-end">
-                        <div class="relative">
-                            <div class="w-72 h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden border-4 border-white shadow-2xl">
+                        <div class="relative float-animation">
+                            <div class="w-72 h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden border-8 border-white shadow-2xl glow">
                                 <img src="rajesh.jpg" alt="Rajesh K" class="w-full h-full object-cover" 
                                      onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80'">
                             </div>
-                            <div class="absolute -bottom-4 -right-4 bg-white p-4 rounded-xl shadow-xl border border-gray-100">
-                                <div class="text-2xl font-bold text-gradient">9.21</div>
-                                <div class="text-sm text-gray-500">BCA CGPA</div>
-                            </div>
+                            <!-- Removed CGPA badge from image -->
                         </div>
+                    </div>
+                </div>
+                
+                <!-- Stats Bar -->
+                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="stat-card card-hover">
+                        <div class="stat-number">10+</div>
+                        <p class="text-gray-600">Projects</p>
+                    </div>
+                    <div class="stat-card card-hover">
+                        <div class="stat-number">100%</div>
+                        <p class="text-gray-600">Client Satisfaction</p>
+                    </div>
+                    <div class="stat-card card-hover">
+                        <div class="stat-number">2+</div>
+                        <p class="text-gray-600">Years Experience</p>
+                    </div>
+                    <div class="stat-card card-hover">
+                        <div class="stat-number">24/7</div>
+                        <p class="text-gray-600">Availability</p>
                     </div>
                 </div>
             </div>
@@ -367,6 +449,7 @@
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-4xl font-bold mb-4">About <span class="text-gradient">Me</span></h2>
+                    <div class="section-divider"></div>
                     <p class="text-gray-600 max-w-2xl mx-auto">
                         A position that creates an opportunity to use my knowledge, skills, and potential 
                         towards achieving organizational goals while providing a platform for learning and self-improvement.
@@ -375,9 +458,9 @@
                 
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div class="order-2 md:order-1">
-                        <h3 class="text-2xl font-bold mb-6 flex items-center">
-                            <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center mr-3">
-                                <i class="fas fa-user-tie text-indigo-600"></i>
+                        <h3 class="text-2xl font-bold mb-6 flex items-center animate__animated animate__fadeInLeft">
+                            <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
+                                <i class="fas fa-user-tie text-white"></i>
                             </div>
                             Software Developer
                         </h3>
@@ -388,36 +471,36 @@
                         </p>
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                            <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-indigo-50 transition">
-                                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
-                                    <i class="fas fa-user text-indigo-600"></i>
+                            <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-indigo-50 transition card-hover">
+                                <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center">
+                                    <i class="fas fa-user text-white"></i>
                                 </div>
                                 <div>
                                     <div class="font-semibold text-sm text-gray-500">Name:</div>
                                     <div class="text-gray-800">Rajesh K</div>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-indigo-50 transition">
-                                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
-                                    <i class="fas fa-envelope text-indigo-600"></i>
+                            <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-indigo-50 transition card-hover">
+                                <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center">
+                                    <i class="fas fa-envelope text-white"></i>
                                 </div>
                                 <div>
                                     <div class="font-semibold text-sm text-gray-500">Email:</div>
                                     <div class="text-gray-800">Rajesh3655r@gmail.com</div>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-indigo-50 transition">
-                                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
-                                    <i class="fas fa-phone text-indigo-600"></i>
+                            <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-indigo-50 transition card-hover">
+                                <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center">
+                                    <i class="fas fa-phone text-white"></i>
                                 </div>
                                 <div>
                                     <div class="font-semibold text-sm text-gray-500">Phone:</div>
                                     <div class="text-gray-800">+91 8217354109</div>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-indigo-50 transition">
-                                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
-                                    <i class="fas fa-map-marker-alt text-indigo-600"></i>
+                            <div class="flex items-center space-x-3 p-4 rounded-lg bg-gray-50 hover:bg-indigo-50 transition card-hover">
+                                <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
                                 </div>
                                 <div>
                                     <div class="font-semibold text-sm text-gray-500">Location:</div>
@@ -428,16 +511,14 @@
                     </div>
                     
                     <div class="order-1 md:order-2">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="text-xl font-bold text-gray-800">Quick Facts</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="space-y-4">
-                                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div class="card-3d">
+                            <div class="card-3d-inner bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-xl border border-gray-100">
+                                <h4 class="text-xl font-bold mb-6 text-gray-800">Quick Facts</h4>
+                                <div class="space-y-6">
+                                    <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
                                         <div class="flex items-center">
-                                            <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center mr-3">
-                                                <i class="fas fa-graduation-cap text-indigo-600"></i>
+                                            <div class="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center mr-4">
+                                                <i class="fas fa-graduation-cap text-white"></i>
                                             </div>
                                             <div>
                                                 <div class="font-semibold">Education</div>
@@ -447,10 +528,10 @@
                                         <div class="text-indigo-600 font-bold">2024-26</div>
                                     </div>
                                     
-                                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                    <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
                                         <div class="flex items-center">
-                                            <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center mr-3">
-                                                <i class="fas fa-laptop-code text-indigo-600"></i>
+                                            <div class="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center mr-4">
+                                                <i class="fas fa-laptop-code text-white"></i>
                                             </div>
                                             <div>
                                                 <div class="font-semibold">Specialization</div>
@@ -460,10 +541,10 @@
                                         <div class="tag">MERN</div>
                                     </div>
                                     
-                                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                    <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
                                         <div class="flex items-center">
-                                            <div class="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center mr-3">
-                                                <i class="fas fa-tasks text-indigo-600"></i>
+                                            <div class="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center mr-4">
+                                                <i class="fas fa-tasks text-white"></i>
                                             </div>
                                             <div>
                                                 <div class="font-semibold">Projects</div>
@@ -481,10 +562,11 @@
         </section>
 
         <!-- Education Section -->
-        <section id="education" class="bg-gray-50">
+        <section id="education" class="bg-gradient-to-b from-gray-50 to-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-4xl font-bold mb-4">My <span class="text-gradient">Education</span></h2>
+                    <div class="section-divider"></div>
                     <p class="text-gray-600 max-w-2xl mx-auto">
                         My academic journey and qualifications in computer applications
                     </p>
@@ -493,41 +575,41 @@
                 <div class="max-w-6xl mx-auto">
                     <div class="grid md:grid-cols-2 gap-6">
                         <!-- MCA -->
-                        <div class="card card-hover">
-                            <div class="card-body">
-                                <div class="flex items-start mb-4">
-                                    <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
-                                        <i class="fas fa-university text-white"></i>
+                        <div class="card-3d">
+                            <div class="card-3d-inner card-hover bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                                <div class="flex items-start mb-6">
+                                    <div class="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mr-4">
+                                        <i class="fas fa-university text-white text-xl"></i>
                                     </div>
                                     <div>
                                         <h3 class="text-xl font-bold text-gray-900">MCA</h3>
                                         <h4 class="text-indigo-600 font-semibold">Presidency University</h4>
                                     </div>
                                 </div>
-                                <p class="text-gray-600 mb-4">Currently pursuing Master's in Computer Applications</p>
+                                <p class="text-gray-600 mb-6">Currently pursuing Master's in Computer Applications with focus on advanced software development and modern technologies.</p>
                                 <div class="flex justify-between items-center">
-                                    <span class="tag">2024 - 2026</span>
-                                    <span class="text-gray-500 text-sm">Bengaluru, KA</span>
+                                    <span class="tag bg-gradient-to-r from-indigo-600 to-purple-600 text-white">2024 - 2026</span>
+                                    <span class="text-gray-500 text-sm"><i class="fas fa-map-marker-alt mr-1"></i> Bengaluru</span>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- BCA -->
-                        <div class="card card-hover">
-                            <div class="card-body">
-                                <div class="flex items-start mb-4">
-                                    <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
-                                        <i class="fas fa-graduation-cap text-white"></i>
+                        <div class="card-3d">
+                            <div class="card-3d-inner card-hover bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                                <div class="flex items-start mb-6">
+                                    <div class="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mr-4">
+                                        <i class="fas fa-graduation-cap text-white text-xl"></i>
                                     </div>
                                     <div>
                                         <h3 class="text-xl font-bold text-gray-900">BCA</h3>
                                         <h4 class="text-indigo-600 font-semibold">Vidyavahini First Grade College</h4>
                                     </div>
                                 </div>
-                                <p class="text-gray-600 mb-4">Bachelor's in Computer Applications</p>
+                                <p class="text-gray-600 mb-6">Bachelor's in Computer Applications with exceptional academic performance and hands-on project experience.</p>
                                 <div class="flex justify-between items-center">
-                                    <span class="tag bg-indigo-100 text-indigo-600">
-                                        CGPA: 9.21
+                                    <span class="tag bg-gradient-to-r from-green-500 to-emerald-600 text-white">
+                                        <i class="fas fa-star mr-1"></i> CGPA: 9.21
                                     </span>
                                     <span class="text-gray-500 text-sm">2021 - 2024</span>
                                 </div>
@@ -543,6 +625,7 @@
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-4xl font-bold mb-4">My <span class="text-gradient">Skills</span></h2>
+                    <div class="section-divider"></div>
                     <p class="text-gray-600 max-w-2xl mx-auto">
                         Technologies and tools I work with to build amazing applications
                     </p>
@@ -550,33 +633,33 @@
                 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Programming -->
-                    <div class="card card-hover">
-                        <div class="card-body">
+                    <div class="card-3d">
+                        <div class="card-3d-inner card-hover bg-gradient-to-b from-gray-50 to-white p-8 rounded-xl shadow-lg border border-gray-100">
                             <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
+                                <div class="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mr-4">
                                     <i class="fas fa-code text-white text-xl"></i>
                                 </div>
                                 <h3 class="text-xl font-bold text-gray-900">Programming</h3>
                             </div>
                             
-                            <div class="space-y-5">
+                            <div class="space-y-6">
                                 <div>
-                                    <div class="flex justify-between mb-2">
+                                    <div class="flex justify-between mb-3">
                                         <span class="font-semibold text-gray-700">Java</span>
-                                        <span class="font-bold text-indigo-600">90%</span>
+                                        <span class="font-bold text-gradient">90%</span>
                                     </div>
                                     <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 90%"></div>
+                                        <div class="skill-progress" data-width="90%"></div>
                                     </div>
                                 </div>
                                 
                                 <div>
-                                    <div class="flex justify-between mb-2">
+                                    <div class="flex justify-between mb-3">
                                         <span class="font-semibold text-gray-700">Python</span>
-                                        <span class="font-bold text-indigo-600">85%</span>
+                                        <span class="font-bold text-gradient">85%</span>
                                     </div>
                                     <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 85%"></div>
+                                        <div class="skill-progress" data-width="85%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -584,43 +667,43 @@
                     </div>
                     
                     <!-- Web Technologies -->
-                    <div class="card card-hover">
-                        <div class="card-body">
+                    <div class="card-3d">
+                        <div class="card-3d-inner card-hover bg-gradient-to-b from-gray-50 to-white p-8 rounded-xl shadow-lg border border-gray-100">
                             <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
+                                <div class="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mr-4">
                                     <i class="fas fa-globe text-white text-xl"></i>
                                 </div>
                                 <h3 class="text-xl font-bold text-gray-900">Web Technologies</h3>
                             </div>
                             
-                            <div class="space-y-5">
+                            <div class="space-y-6">
                                 <div>
-                                    <div class="flex justify-between mb-2">
+                                    <div class="flex justify-between mb-3">
                                         <span class="font-semibold text-gray-700">HTML/CSS</span>
-                                        <span class="font-bold text-indigo-600">95%</span>
+                                        <span class="font-bold text-gradient">95%</span>
                                     </div>
                                     <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 95%"></div>
+                                        <div class="skill-progress" data-width="95%"></div>
                                     </div>
                                 </div>
                                 
                                 <div>
-                                    <div class="flex justify-between mb-2">
+                                    <div class="flex justify-between mb-3">
                                         <span class="font-semibold text-gray-700">JavaScript</span>
-                                        <span class="font-bold text-indigo-600">90%</span>
+                                        <span class="font-bold text-gradient">90%</span>
                                     </div>
                                     <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 90%"></div>
+                                        <div class="skill-progress" data-width="90%"></div>
                                     </div>
                                 </div>
                                 
                                 <div>
-                                    <div class="flex justify-between mb-2">
+                                    <div class="flex justify-between mb-3">
                                         <span class="font-semibold text-gray-700">React.js</span>
-                                        <span class="font-bold text-indigo-600">85%</span>
+                                        <span class="font-bold text-gradient">85%</span>
                                     </div>
                                     <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 85%"></div>
+                                        <div class="skill-progress" data-width="85%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -628,43 +711,43 @@
                     </div>
                     
                     <!-- Full Stack & Databases -->
-                    <div class="card card-hover">
-                        <div class="card-body">
+                    <div class="card-3d">
+                        <div class="card-3d-inner card-hover bg-gradient-to-b from-gray-50 to-white p-8 rounded-xl shadow-lg border border-gray-100">
                             <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
+                                <div class="w-14 h-14 rounded-xl gradient-bg flex items-center justify-center mr-4">
                                     <i class="fas fa-database text-white text-xl"></i>
                                 </div>
                                 <h3 class="text-xl font-bold text-gray-900">Full Stack & DB</h3>
                             </div>
                             
-                            <div class="space-y-5">
+                            <div class="space-y-6">
                                 <div>
-                                    <div class="flex justify-between mb-2">
+                                    <div class="flex justify-between mb-3">
                                         <span class="font-semibold text-gray-700">MERN Stack</span>
-                                        <span class="font-bold text-indigo-600">85%</span>
+                                        <span class="font-bold text-gradient">85%</span>
                                     </div>
                                     <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 85%"></div>
+                                        <div class="skill-progress" data-width="85%"></div>
                                     </div>
                                 </div>
                                 
                                 <div>
-                                    <div class="flex justify-between mb-2">
+                                    <div class="flex justify-between mb-3">
                                         <span class="font-semibold text-gray-700">SQL</span>
-                                        <span class="font-bold text-indigo-600">80%</span>
+                                        <span class="font-bold text-gradient">80%</span>
                                     </div>
                                     <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 80%"></div>
+                                        <div class="skill-progress" data-width="80%"></div>
                                     </div>
                                 </div>
                                 
                                 <div>
-                                    <div class="flex justify-between mb-2">
+                                    <div class="flex justify-between mb-3">
                                         <span class="font-semibold text-gray-700">MongoDB</span>
-                                        <span class="font-bold text-indigo-600">85%</span>
+                                        <span class="font-bold text-gradient">85%</span>
                                     </div>
                                     <div class="skill-bar">
-                                        <div class="skill-progress" style="width: 85%"></div>
+                                        <div class="skill-progress" data-width="85%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -675,105 +758,116 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="bg-gray-50">
+        <section id="projects" class="bg-gradient-to-b from-gray-50 to-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-4xl font-bold mb-4">My <span class="text-gradient">Projects</span></h2>
+                    <div class="section-divider"></div>
                     <p class="text-gray-600 max-w-2xl mx-auto">
                         Some of my recent work and projects I've developed
                     </p>
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-600 mt-4">
+                        <i class="fas fa-clock mr-2"></i>
+                        <span class="font-medium">10+ Projects Coming Soon</span>
+                    </div>
                 </div>
                 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Project 1 -->
-                    <div class="card card-hover">
-                        <div class="h-48 overflow-hidden">
-                            <img src="project-grocery.jpg" alt="Shop4Grocery" 
-                                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                                 onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-xl font-bold text-gray-900">Shop4Grocery</h3>
-                                <span class="tag bg-green-100 text-green-600">MERN</span>
+                    <div class="project-card card-3d">
+                        <div class="card-3d-inner card-hover bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+                            <div class="h-48 overflow-hidden bg-gradient-to-br from-indigo-50 to-purple-50 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-shopping-cart text-6xl text-gradient mb-4"></i>
+                                    <h3 class="text-xl font-bold text-gray-800">Shop4Grocery</h3>
+                                </div>
                             </div>
-                            <p class="text-gray-600 mb-4">
-                                A full-stack grocery platform with user authentication, product catalog, 
-                                shopping cart, and order management system.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="tag">MongoDB</span>
-                                <span class="tag">Express.js</span>
-                                <span class="tag">React.js</span>
-                                <span class="tag">Node.js</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-500 text-sm">Full Stack Project</span>
-                                <span class="text-indigo-600 font-semibold">Coming Soon</span>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-xl font-bold text-gray-900">Shop4Grocery</h3>
+                                    <span class="tag bg-gradient-to-r from-green-100 to-emerald-100 text-green-600">MERN</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">
+                                    A full-stack grocery platform with user authentication, product catalog, 
+                                    shopping cart, and order management system.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="tag">MongoDB</span>
+                                    <span class="tag">Express.js</span>
+                                    <span class="tag">React.js</span>
+                                    <span class="tag">Node.js</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="px-4 py-2 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold">
+                                        Coming Soon
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Project 2 -->
-                    <div class="card card-hover">
-                        <div class="h-48 overflow-hidden">
-                            <img src="project-voting.jpg" alt="Voting System" 
-                                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                                 onerror="this.src='https://images.unsplash.com/photo-1551135049-8a33b2fb2f5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-xl font-bold text-gray-900">Voting Management System</h3>
-                                <span class="tag bg-blue-100 text-blue-600">Flask</span>
+                    <div class="project-card card-3d">
+                        <div class="card-3d-inner card-hover bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+                            <div class="h-48 overflow-hidden bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-vote-yea text-6xl text-gradient mb-4"></i>
+                                    <h3 class="text-xl font-bold text-gray-800">Voting System</h3>
+                                </div>
                             </div>
-                            <p class="text-gray-600 mb-4">
-                                Flask & MongoDB-based voting portal with authentication, 
-                                admin panel, and live results dashboard.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="tag">Python</span>
-                                <span class="tag">Flask</span>
-                                <span class="tag">MongoDB</span>
-                                <span class="tag">Bootstrap</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <a href="https://voting-management-system-ue47.onrender.com" target="_blank" 
-                                   class="text-indigo-600 font-semibold hover:text-indigo-700 flex items-center">
-                                    Live Demo <i class="fas fa-external-link-alt ml-2"></i>
-                                </a>
-                                <span class="text-sm text-gray-500">Live</span>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-xl font-bold text-gray-900">Voting Management System</h3>
+                                    <span class="tag bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-600">Flask</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">
+                                    Flask & MongoDB-based voting portal with authentication, 
+                                    admin panel, and live results dashboard.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">Flask</span>
+                                    <span class="tag">MongoDB</span>
+                                    <span class="tag">Bootstrap</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="px-4 py-2 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold">
+                                        Coming Soon
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Project 3 -->
-                    <div class="card card-hover">
-                        <div class="h-48 overflow-hidden">
-                            <img src="project-pg-locator.jpg" alt="FindNearPG" 
-                                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                                 onerror="this.src='https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-xl font-bold text-gray-900">FindNearPG – PG Locator</h3>
-                                <span class="tag bg-orange-100 text-orange-600">API Integration</span>
+                    <div class="project-card card-3d">
+                        <div class="card-3d-inner card-hover bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+                            <div class="h-48 overflow-hidden bg-gradient-to-br from-orange-50 to-red-50 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-home text-6xl text-gradient mb-4"></i>
+                                    <h3 class="text-xl font-bold text-gray-800">PG Locator</h3>
+                                </div>
                             </div>
-                            <p class="text-gray-600 mb-4">
-                                Location-based app to find PG accommodations with Google Maps integration, 
-                                real-time data updates, and user reviews.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="tag">Python</span>
-                                <span class="tag">Flask</span>
-                                <span class="tag">MongoDB</span>
-                                <span class="tag">Google Maps API</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <a href="https://findnearpg.onrender.com" target="_blank" 
-                                   class="text-indigo-600 font-semibold hover:text-indigo-700 flex items-center">
-                                    Live Demo <i class="fas fa-external-link-alt ml-2"></i>
-                                </a>
-                                <span class="text-sm text-gray-500">Live</span>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-xl font-bold text-gray-900">FindNearPG – PG Locator</h3>
+                                    <span class="tag bg-gradient-to-r from-orange-100 to-red-100 text-orange-600">API Integration</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">
+                                    Location-based app to find PG accommodations with Google Maps integration, 
+                                    real-time data updates, and user reviews.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">Flask</span>
+                                    <span class="tag">MongoDB</span>
+                                    <span class="tag">Google Maps API</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="px-4 py-2 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold">
+                                        Coming Soon
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -786,6 +880,7 @@
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-4xl font-bold mb-4">Contact <span class="text-gradient">Me</span></h2>
+                    <div class="section-divider"></div>
                     <p class="text-gray-300 max-w-2xl mx-auto">
                         Feel free to reach out for collaborations or just to say hello!
                     </p>
@@ -799,9 +894,9 @@
                         <h3 class="text-2xl font-bold mb-8">Get in Touch</h3>
                         
                         <div class="space-y-6">
-                            <div class="flex items-start space-x-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition">
-                                <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-map-marker-alt text-white"></i>
+                            <div class="flex items-start space-x-4 p-6 rounded-xl bg-white/5 hover:bg-white/10 transition card-hover">
+                                <div class="w-14 h-14 rounded-full gradient-bg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-white text-xl"></i>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-lg">Location</h4>
@@ -809,25 +904,25 @@
                                 </div>
                             </div>
                             
-                            <div class="flex items-start space-x-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition">
-                                <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-envelope text-white"></i>
+                            <div class="flex items-start space-x-4 p-6 rounded-xl bg-white/5 hover:bg-white/10 transition card-hover">
+                                <div class="w-14 h-14 rounded-full gradient-bg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-envelope text-white text-xl"></i>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-lg">Email</h4>
-                                    <a href="mailto:Rajesh3655r@gmail.com" class="text-gray-300 hover:text-white">
+                                    <a href="mailto:Rajesh3655r@gmail.com" class="text-gray-300 hover:text-white transition">
                                         Rajesh3655r@gmail.com
                                     </a>
                                 </div>
                             </div>
                             
-                            <div class="flex items-start space-x-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition">
-                                <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-phone text-white"></i>
+                            <div class="flex items-start space-x-4 p-6 rounded-xl bg-white/5 hover:bg-white/10 transition card-hover">
+                                <div class="w-14 h-14 rounded-full gradient-bg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-phone text-white text-xl"></i>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-lg">Phone</h4>
-                                    <a href="tel:+918217354109" class="text-gray-300 hover:text-white">
+                                    <a href="tel:+918217354109" class="text-gray-300 hover:text-white transition">
                                         +91 8217354109
                                     </a>
                                 </div>
@@ -839,16 +934,16 @@
                             <h4 class="font-bold text-lg mb-6">Connect with me</h4>
                             <div class="flex space-x-4">
                                 <a href="https://www.linkedin.com/in/rajesh-k-7b4aa627b" target="_blank" 
-                                   class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-indigo-600 hover:transform hover:scale-110 transition">
-                                    <i class="fab fa-linkedin-in text-white"></i>
+                                   class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center hover:bg-indigo-600 hover:transform hover:scale-110 transition card-hover">
+                                    <i class="fab fa-linkedin-in text-white text-xl"></i>
                                 </a>
                                 <a href="https://github.com/Rajesh3655" target="_blank" 
-                                   class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-indigo-600 hover:transform hover:scale-110 transition">
-                                    <i class="fab fa-github text-white"></i>
+                                   class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center hover:bg-indigo-600 hover:transform hover:scale-110 transition card-hover">
+                                    <i class="fab fa-github text-white text-xl"></i>
                                 </a>
                                 <a href="https://www.instagram.com/dnameis_rajesh?igsh=cnE2YW1vbG5qNzQ1" target="_blank" 
-                                   class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-indigo-600 hover:transform hover:scale-110 transition">
-                                    <i class="fab fa-instagram text-white"></i>
+                                   class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center hover:bg-indigo-600 hover:transform hover:scale-110 transition card-hover">
+                                    <i class="fab fa-instagram text-white text-xl"></i>
                                 </a>
                             </div>
                         </div>
@@ -860,30 +955,30 @@
                         
                         <form id="contactForm" class="space-y-6">
                             <div>
-                                <label for="name" class="block mb-2 font-medium">Name *</label>
+                                <label for="name" class="block mb-3 font-medium">Name *</label>
                                 <input type="text" id="name" name="name" required 
-                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-gray-400">
+                                       class="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-gray-400">
                             </div>
                             
                             <div>
-                                <label for="email" class="block mb-2 font-medium">Email *</label>
+                                <label for="email" class="block mb-3 font-medium">Email *</label>
                                 <input type="email" id="email" name="email" required 
-                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-gray-400">
+                                       class="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-gray-400">
                             </div>
                             
                             <div>
-                                <label for="subject" class="block mb-2 font-medium">Subject</label>
+                                <label for="subject" class="block mb-3 font-medium">Subject</label>
                                 <input type="text" id="subject" name="subject" 
-                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-gray-400">
+                                       class="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-gray-400">
                             </div>
                             
                             <div>
-                                <label for="message" class="block mb-2 font-medium">Message *</label>
+                                <label for="message" class="block mb-3 font-medium">Message *</label>
                                 <textarea id="message" name="message" rows="5" required 
-                                          class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-gray-400"></textarea>
+                                          class="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-white placeholder-gray-400"></textarea>
                             </div>
                             
-                            <button type="submit" class="w-full btn-primary">
+                            <button type="submit" class="w-full px-8 py-4 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center">
                                 <i class="fas fa-paper-plane mr-2"></i> Send Message
                             </button>
                         </form>
@@ -898,7 +993,7 @@
         <div class="container mx-auto px-6">
             <div class="text-center">
                 <a href="#home" class="text-2xl font-bold text-gradient inline-block mb-4 hover:opacity-90 transition">Rajesh<span class="text-indigo-400">.</span></a>
-                <p class="text-gray-400 mb-8">© 2024 Rajesh K. All Rights Reserved</p>
+                <p class="text-gray-400 mb-8">© 2026 Rajesh K. All Rights Reserved</p>
                 
                 <div class="flex justify-center space-x-6 mb-8">
                     <a href="https://www.linkedin.com/in/rajesh-k-7b4aa627b" target="_blank" 
@@ -916,13 +1011,39 @@
                 </div>
                 
                 <p class="text-gray-500 text-sm">
-                    Designed with <i class="fas fa-heart text-red-400 mx-1"></i> by Rajesh K
+                    Crafted with <i class="fas fa-heart text-red-400 mx-1"></i> by Rajesh K
                 </p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Initialize particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 20 + 5;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                particle.style.opacity = Math.random() * 0.3 + 0.1;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
         // Mobile menu toggle
         document.getElementById('menuBtn').addEventListener('click', function() {
             const menu = document.getElementById('mobileMenu');
@@ -960,7 +1081,7 @@
 
         // Animate skill bars on scroll
         const observerOptions = {
-            threshold: 0.5
+            threshold: 0.3
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -968,7 +1089,7 @@
                 if (entry.isIntersecting) {
                     const skillBars = entry.target.querySelectorAll('.skill-progress');
                     skillBars.forEach(bar => {
-                        const width = bar.style.width;
+                        const width = bar.getAttribute('data-width');
                         bar.style.width = '0';
                         setTimeout(() => {
                             bar.style.width = width;
@@ -978,8 +1099,48 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('#skills .card').forEach(card => {
+        document.querySelectorAll('#skills .card-3d').forEach(card => {
             observer.observe(card);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 3D card effect on mouse move
+        document.querySelectorAll('.card-3d').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const cardRect = card.getBoundingClientRect();
+                const x = e.clientX - cardRect.left;
+                const y = e.clientY - cardRect.top;
+                
+                const centerX = cardRect.width / 2;
+                const centerY = cardRect.height / 2;
+                
+                const rotateY = ((x - centerX) / centerX) * 5;
+                const rotateX = ((centerY - y) / centerY) * 5;
+                
+                card.querySelector('.card-3d-inner').style.transform = 
+                    `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('.card-3d-inner').style.transform = 
+                    'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
         });
 
         // EmailJS form submission
@@ -1004,7 +1165,9 @@
                     icon: 'error',
                     title: 'Error',
                     text: 'Please fill all required fields',
-                    confirmButtonColor: '#4f46e5'
+                    confirmButtonColor: '#6366f1',
+                    background: '#0f172a',
+                    color: 'white'
                 });
                 btn.innerHTML = original;
                 btn.disabled = false;
@@ -1021,7 +1184,9 @@
                     icon: 'success',
                     title: 'Success!',
                     text: 'Message sent successfully!',
-                    confirmButtonColor: '#4f46e5'
+                    confirmButtonColor: '#6366f1',
+                    background: '#0f172a',
+                    color: 'white'
                 });
                 document.getElementById("contactForm").reset();
             }).catch(err => {
@@ -1030,7 +1195,9 @@
                     icon: 'error',
                     title: 'Error',
                     text: 'Failed to send message. Please try again.',
-                    confirmButtonColor: '#4f46e5'
+                    confirmButtonColor: '#6366f1',
+                    background: '#0f172a',
+                    color: 'white'
                 });
             }).finally(() => {
                 btn.innerHTML = original;
@@ -1038,22 +1205,43 @@
             });
         });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+        // Initialize particles on load
+        window.addEventListener('load', createParticles);
+
+        // Add scroll animations
+        const animateOnScroll = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
                 }
             });
+        }, { threshold: 0.1 });
+
+        // Observe elements for animation
+        document.querySelectorAll('.card-3d, .stat-card, .timeline-item').forEach(el => {
+            animateOnScroll.observe(el);
         });
+
+        // Typewriter effect restart
+        function restartTypewriter() {
+            const typewriterText = document.querySelector('.typewriter-text');
+            const typewriterCursor = document.querySelector('.typewriter-cursor');
+            
+            // Reset animation
+            typewriterText.style.animation = 'none';
+            typewriterCursor.style.animation = 'none';
+            
+            // Trigger reflow
+            void typewriterText.offsetWidth;
+            void typewriterCursor.offsetWidth;
+            
+            // Restart animation
+            typewriterText.style.animation = 'typing 3s steps(30, end), blink-caret 0.75s step-end infinite';
+            typewriterCursor.style.animation = 'blink 1s infinite';
+        }
+
+        // Restart typewriter every 8 seconds
+        setInterval(restartTypewriter, 8000);
     </script>
 </body>
 </html>

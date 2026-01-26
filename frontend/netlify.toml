@@ -1,7 +1,14 @@
 [build]
-  publish = "."
+  publish = "frontend"
+  command = "echo 'Deploying from frontend folder'"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
+  status = 200
+
+# Or if you want to point to frontend folder directly
+[[redirects]]
+  from = "/*"
+  to = "/frontend/index.html"
   status = 200
